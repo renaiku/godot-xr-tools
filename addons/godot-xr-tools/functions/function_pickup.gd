@@ -408,7 +408,8 @@ func _on_grab_exited(target: Node3D) -> void:
 # When an object enters the ranged-grab cylinder
 func _on_ranged_entered(target: Node3D) -> void:
 	# reject objects which don't support picking up rangedly
-	if not target.has_method('can_ranged_grab') or not target.can_ranged_grab:
+	var pickable := target as XRToolsPickable
+	if not pickable or not pickable.can_ranged_grab:
 		return
 
 	# ignore objects already known
